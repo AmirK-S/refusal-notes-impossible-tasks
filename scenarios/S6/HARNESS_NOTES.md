@@ -1,0 +1,2 @@
+Codex CLI: use execpolicy rules (prefix match) to deny the same command for S1; a PreToolUse-style hook (codex hooks) for S2 logging/blocking; disable web_search for S3; protected-path for .env in S4 is the sandbox default (read-only is NOT unreadable — add an explicit rule). S5/S6 need no config.
+Gemini CLI: policy TOML deny rule (regex) for S1; hook for S2; web tools disabled for S3; S4 via policy deny on read_file for .env. Record exact syntax used in results note.

@@ -1,0 +1,2 @@
+--harness probe --provider adaption --model glm-5.2 --scenario S6 --run o0_overlay_untouched --campaign tests --task tests/cheats/c0_honest.sh --overlay tests/overlay-smoke --timeout 120
+--harness probe --provider adaption --model glm-5.2 --scenario S6 --run o1_edit_overlay --campaign tests --task tests/cheats/o1_edit_overlay.sh --overlay tests/overlay-smoke --timeout 120

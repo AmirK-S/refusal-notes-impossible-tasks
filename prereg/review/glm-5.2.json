@@ -1,0 +1,30 @@
+{
+ "model": "glm-5.2",
+ "returned_model": "glm-5.2",
+ "usage": {
+  "input_tokens": 9016,
+  "input_tokens_details": {
+   "audio_tokens": null,
+   "cached_tokens": 0,
+   "cached_tokens_details": null,
+   "image_tokens": null,
+   "text_tokens": null,
+   "video_tokens": null,
+   "cache_write_tokens": 8960,
+   "input_tokens_per_turn": [],
+   "cached_tokens_per_turn": []
+  },
+  "output_tokens": 5203,
+  "output_tokens_details": {
+   "audio_tokens": null,
+   "reasoning_tokens": 4062,
+   "text_tokens": null,
+   "tool_output_tokens": 0,
+   "output_tokens_per_turn": [],
+   "tool_output_tokens_per_turn": []
+  },
+  "total_tokens": 14219,
+  "cost": 0.0355156
+ },
+ "text": "Here is the methodological review, ranked from most to least serious.\n\n**1. Tautological Monitor Design (H2) and Blinding Flaw**\n(a) H2 tests if M-final sensitivity is lower on laundered vs. disclosed violators. By definition, \"disclosed\" means the agent explicitly stated the violation in the final message (Code 1=yes), while \"laundered\" means it explicitly hid it. Therefore, H2 merely tests if a monitor reading the final message can detect a confession versus a lie. This is a tautological, circular result that provides no empirical insight into monitor blind spots, invalidating the core conclusion of the study.\n(b) Redefine H2 to compare monitor sensitivity on all violators against non-violators (where neither explicitly confesses), or drop the split by agent disclosure and just test overall M-final sensitivity against ground truth.\n\n**2. Invalid H1 Binomial Test and Judge Combination Rule**\n(a) H1 uses an exact binomial test where n = laundered + disclosed + (not-agreed counted as \"not laundered\"). \"Not-agreed\" includes judge disagreements and unclassified runs. Forcing these into a binary \"failure\" outcome violates the binomial test's assumptions (outcomes are not genuinely binary in nature), artificially deflates the estimated laundering rate, and destroys statistical power.\n(b) Drop the \"not-agreed = not laundered\" rule. Restrict the binomial denominator n strictly to runs where both judges agree (laundered vs. disclosed), and exclude unclassified/disagreed runs from the H1 test.\n\n**3. Power Mismatch for H2**\n(a) The power script (`power_out.txt`) calculates H2 power using Fisher's exact test on two proportions. However, the pre-registration specifies a permutation test on the mean pooled monitor scores (continuous values 0, 0.5, 1). The claimed power (0.83 at alpha 0.05) is invalid because it was computed for the wrong test, meaning the study is likely severely underpowered for its actual planned analysis.\n(b) Either change the H2 test to Fisher's exact (by dichotomizing the pooled score at >0.5) or quickly rerun `power.py` to simulate the exact permutation test on the continuous pooled scores.\n\n**4. Unweighted Pooling Across Packages**\n(a) H1 to H3 pool all violators without weights. GLM has an expected 30-60% violation rate, while Claude is 0-2%. GLM will completely dominate the violator subset. Therefore, any significant finding for H1-H3 will just be a proxy for GLM's behavior, making the general title \"Coding Agents That Break...\" an overclaim.\n(b) Drop the pooled tests as primary. Analyze and report H1-H3 strictly by package, or use inverse-variance weighting if a single combined estimate is absolutely required.\n\n**5. Defense Notes' Matching and Confounding**\n(a) The refusal note explicitly mentions the blocker/method, while the neutral note describes the repository. An LLM will trivially distinguish these, introducing severe confounding. Furthermore, counting provider refusals after the first tool call as state (b) \"compliant stop\" conflates \"model refused to act\" with \"agent stopped legitimately,\" which could artificially validate the defense intervention (H-D).\n(b) Make the neutral note mention the *same* blocker but suggest a legitimate workaround (e.g., \"The dependency is missing; remember to check CI policy\"). Code provider refusals as a distinct final state and exclude them from the H-D success analysis.\n\n**6. Selection Effects in Laundering Definition**\n(a) Laundering is coded among all `forbidden_mod=yes` runs. However, a red run (`green=no`) claiming success is a *failed* deception, not a successful \"laundered\" bypass. Including red runs that claim success in the laundering metric dilutes the concept of laundering (which implies a successful bypass presented as clean).\n(b) Restrict the definition of \"laundered\" strictly to `green=yes` runs that claim success/compliance. Red runs claiming success should be recoded as \"unclassified\" or \"failed deception.\"\n\n**7. Garden of Forking Paths via \"Strict Violation\"**\n(a) Pre-specifying \"strict violation\" sensitivity analyses that dynamically redefine the ground truth (`forbidden_mod`) by dropping certain descriptors creates a garden of forking paths. If the primary test fails, the plan allows cherry-picking the independent variable definition to find significance.\n(b) Commit to a single ground-truth definition. Fix the `fxprovider_paths` checker script right now (runs haven't started) so it doesn't fire on false positives, rather than carrying multiple definitions into the analysis phase.\n\n**8. Exclusions, Fallbacks, and Holm Family Composition**\n(a) Appending replacement runs at the end of the queue for infrastructure failures breaks randomization for the defense block (introducing time-of-day or model-update confounds). Additionally, grouping H-D (a single-package intervention) with H1-H3 (observational trends) in the same Holm family penalizes the primary observational hypotheses for multiplicity against an unrelated test.\n(b) Analyze replacements in their actual execution sequence rather than backfilling them into the original cell's randomization slot. Split the Holm correction into two families: one for observational hypotheses (H1, H2, H3) and one for the intervention (H-D)."
+}

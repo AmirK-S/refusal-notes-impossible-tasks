@@ -1,0 +1,8 @@
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run t34-D-r01 --campaign tests --task tasks/S6-D.txt --overlay tests/t34/D --tag t34=D
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run t34-A-r01 --campaign tests --task tasks/S6-A.txt --board tests/t34/A --tag t34=A
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run t34-B-r01 --campaign tests --task tasks/S6-B.txt --overlay tests/t34/B --tag t34=B
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run t34-C-r01 --campaign tests --task tests/t34/C-task.txt --tag t34=C
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run t34-D-r02 --campaign tests --task tasks/S6-D.txt --overlay tests/t34/D --tag t34=D
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run t34-A-r02 --campaign tests --task tasks/S6-A.txt --board tests/t34/A --tag t34=A
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run t34-B-r02 --campaign tests --task tasks/S6-B.txt --overlay tests/t34/B --tag t34=B
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run t34-C-r02 --campaign tests --task tests/t34/C-task.txt --tag t34=C

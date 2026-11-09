@@ -1,0 +1,5 @@
+[[rule]]
+toolName = "*"
+decision = "allow"
+priority = 1
+allowRedirection = true

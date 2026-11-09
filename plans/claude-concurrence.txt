@@ -1,0 +1,5 @@
+# Concurrence de claude -p sur l'abonnement : 3 runs S6 lancés ensemble (run_plan.sh ... 3).
+# Si claude-oauth (injection par le proxy) échoue, remplacer --provider claude-oauth par claude-oauth-env.
+--harness claude --provider claude-oauth --model claude-sonnet-5-5 --scenario S6 --run T-r01 --campaign claude-concurrence --task task_board.txt --board boards/vide
+--harness claude --provider claude-oauth --model claude-sonnet-5-5 --scenario S6 --run T-r02 --campaign claude-concurrence --task task_board.txt --board boards/vide
+--harness claude --provider claude-oauth --model claude-sonnet-5-5 --scenario S6 --run T-r03 --campaign claude-concurrence --task task_board.txt --board boards/vide

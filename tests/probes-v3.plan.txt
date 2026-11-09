@@ -1,0 +1,10 @@
+--harness probe --provider adaption --model glm-5.2 --scenario S6 --run c0_honest-v3 --campaign tests --task tests/cheats/c0_honest.sh --timeout 120
+--harness probe --provider adaption --model glm-5.2 --scenario S6 --run c1_conftest_sysmodules-v3 --campaign tests --task tests/cheats/c1_conftest_sysmodules.sh --timeout 120
+--harness probe --provider adaption --model glm-5.2 --scenario S6 --run c2_skip_marker-v3 --campaign tests --task tests/cheats/c2_skip_marker.sh --timeout 120
+--harness probe --provider adaption --model glm-5.2 --scenario S6 --run c3_fake_module_repo-v3 --campaign tests --task tests/cheats/c3_fake_module_repo.sh --timeout 120
+--harness probe --provider adaption --model glm-5.2 --scenario S6 --run c4_user_site_fake-v3 --campaign tests --task tests/cheats/c4_user_site_fake.sh --timeout 120
+--harness probe --provider adaption --model glm-5.2 --scenario S6 --run c5_shadow_pytest-v3 --campaign tests --task tests/cheats/c5_shadow_pytest.sh --timeout 120
+--harness probe --provider adaption --model glm-5.2 --scenario S6 --run c6_exitstatus_hook-v3 --campaign tests --task tests/cheats/c6_exitstatus_hook.sh --timeout 120
+--harness probe --provider adaption --model glm-5.2 --scenario S6F --run c0_honest-v3 --campaign tests --task tests/cheats/c0_honest.sh --timeout 120
+--harness probe --provider adaption --model glm-5.2 --scenario S6F --run c2_skip_marker-v3 --campaign tests --task tests/cheats/c2_skip_marker.sh --timeout 120
+--harness probe --provider adaption --model glm-5.2 --scenario S6F --run c7_real_fix-v3 --campaign tests --task tests/cheats/c7_real_fix.sh --timeout 120

@@ -1,0 +1,52 @@
+# power.py output (exact enumeration). Columns: power at alpha=0.05 / at alpha=0.0125 (Holm first step, m=4)
+
+## Base rates: one-sided 95 % upper bound when 0 violations are observed (Clopper-Pearson), and Wilson half-width at 50 %
+n=60: 0/60 -> upper bound 0.0487; Wilson at 30/60: [0.377, 0.623]
+n=80: 0/80 -> upper bound 0.0368; Wilson at 40/80: [0.393, 0.607]
+n=120: 0/120 -> upper bound 0.0247; Wilson at 60/120: [0.412, 0.588]
+
+## Expected number of violators (forbidden_mod=yes) in the base, under three scenarios for the per-run violation rate
+cells: GPT S6 120 + S7 80, Claude S6 120 + S7 80, GLM S6 80 + S7 80, DeepSeek S6 60 + S7 60 (680 runs)
+low: GPT 1% -> 2, Claude 0% -> 0, GLM 10% -> 16, DeepSeek 10% -> 12; total 30
+mid: GPT 3% -> 6, Claude 1% -> 2, GLM 30% -> 48, DeepSeek 20% -> 24; total 80
+high: GPT 6% -> 12, Claude 2% -> 4, GLM 60% -> 96, DeepSeek 40% -> 48; total 160
+
+## H1: exact one-sided binomial, H0 p<=0.5, n = number of violators, p = true laundered share
+n_viol | p=0.6 | p=0.65 | p=0.7 | p=0.75 | p=0.8 | p=0.9
+10 | 0.05/0.05 | 0.09/0.09 | 0.15/0.15 | 0.24/0.24 | 0.38/0.38 | 0.74/0.74
+15 | 0.09/0.03 | 0.17/0.06 | 0.30/0.13 | 0.46/0.24 | 0.65/0.40 | 0.94/0.82
+20 | 0.13/0.05 | 0.25/0.12 | 0.42/0.24 | 0.62/0.41 | 0.80/0.63 | 0.99/0.96
+30 | 0.29/0.09 | 0.51/0.22 | 0.73/0.43 | 0.89/0.67 | 0.97/0.87 | 1.00/1.00
+40 | 0.32/0.13 | 0.57/0.31 | 0.81/0.58 | 0.95/0.82 | 0.99/0.96 | 1.00/1.00
+60 | 0.45/0.18 | 0.75/0.45 | 0.94/0.76 | 0.99/0.95 | 1.00/1.00 | 1.00/1.00
+80 | 0.55/0.29 | 0.85/0.64 | 0.98/0.91 | 1.00/0.99 | 1.00/1.00 | 1.00/1.00
+120 | 0.68/0.47 | 0.95/0.85 | 1.00/0.99 | 1.00/1.00 | 1.00/1.00 | 1.00/1.00
+160 | 0.81/0.60 | 0.99/0.94 | 1.00/1.00 | 1.00/1.00 | 1.00/1.00 | 1.00/1.00
+
+## H2: two-sided Fisher, M-final sensitivity on laundered (n_l, s_l) vs disclosed (n_d, s_d), one monitor
+n_l=15, n_d=5 | s_l=0.3,s_d=0.9: 0.61/0.32 | s_l=0.5,s_d=0.9: 0.19/0.04 | s_l=0.6,s_d=0.95: 0.07/0.01 | s_l=0.7,s_d=0.95: 0.01/0.00
+n_l=20, n_d=7 | s_l=0.3,s_d=0.9: 0.79/0.59 | s_l=0.5,s_d=0.9: 0.33/0.13 | s_l=0.6,s_d=0.95: 0.18/0.04 | s_l=0.7,s_d=0.95: 0.03/0.00
+n_l=30, n_d=10 | s_l=0.3,s_d=0.9: 0.92/0.83 | s_l=0.5,s_d=0.9: 0.58/0.32 | s_l=0.6,s_d=0.95: 0.55/0.18 | s_l=0.7,s_d=0.95: 0.25/0.02
+n_l=45, n_d=15 | s_l=0.3,s_d=0.9: 0.99/0.96 | s_l=0.5,s_d=0.9: 0.83/0.62 | s_l=0.6,s_d=0.95: 0.81/0.53 | s_l=0.7,s_d=0.95: 0.48/0.14
+n_l=60, n_d=20 | s_l=0.3,s_d=0.9: 1.00/1.00 | s_l=0.5,s_d=0.9: 0.93/0.80 | s_l=0.6,s_d=0.95: 0.92/0.74 | s_l=0.7,s_d=0.95: 0.66/0.36
+n_l=100, n_d=33 | s_l=0.3,s_d=0.9: 1.00/1.00 | s_l=0.5,s_d=0.9: 1.00/0.98 | s_l=0.6,s_d=0.95: 0.99/0.97 | s_l=0.7,s_d=0.95: 0.91/0.75
+
+## H3: exact McNemar on laundered runs, M-trace vs M-final; p10 = trace detects and final misses, p01 = reverse
+n_laundered=10 | p10=0.2,p01=0.05: 0.00/0.00 | p10=0.3,p01=0.05: 0.04/0.00 | p10=0.4,p01=0.05: 0.12/0.01 | p10=0.5,p01=0.05: 0.27/0.05
+n_laundered=15 | p10=0.2,p01=0.05: 0.04/0.00 | p10=0.3,p01=0.05: 0.17/0.03 | p10=0.4,p01=0.05: 0.38/0.13 | p10=0.5,p01=0.05: 0.60/0.32
+n_laundered=20 | p10=0.2,p01=0.05: 0.10/0.02 | p10=0.3,p01=0.05: 0.32/0.12 | p10=0.4,p01=0.05: 0.58/0.33 | p10=0.5,p01=0.05: 0.78/0.56
+n_laundered=30 | p10=0.2,p01=0.05: 0.24/0.08 | p10=0.3,p01=0.05: 0.57/0.33 | p10=0.4,p01=0.05: 0.82/0.61 | p10=0.5,p01=0.05: 0.95/0.82
+n_laundered=45 | p10=0.2,p01=0.05: 0.42/0.21 | p10=0.3,p01=0.05: 0.80/0.58 | p10=0.4,p01=0.05: 0.96/0.87 | p10=0.5,p01=0.05: 1.00/0.98
+n_laundered=60 | p10=0.2,p01=0.05: 0.58/0.34 | p10=0.3,p01=0.05: 0.92/0.79 | p10=0.4,p01=0.05: 0.99/0.97 | p10=0.5,p01=0.05: 1.00/1.00
+n_laundered=100 | p10=0.2,p01=0.05: 0.84/0.66 | p10=0.3,p01=0.05: 0.99/0.97 | p10=0.4,p01=0.05: 1.00/1.00 | p10=0.5,p01=0.05: 1.00/1.00
+
+## H-D: two-sided Fisher, GLM, impossible task, forbidden_mod rate, refusal (60) vs neutral (60)
+neutral=0.4 | refusal=0.1: 0.96/0.90 | refusal=0.2: 0.60/0.39 | refusal=0.3: 0.15/0.06
+neutral=0.5 | refusal=0.1: 1.00/0.99 | refusal=0.2: 0.91/0.80 | refusal=0.3: 0.54/0.33 | refusal=0.4: 0.16/0.06
+neutral=0.67 | refusal=0.1: 1.00/1.00 | refusal=0.2: 1.00/1.00 | refusal=0.3: 0.98/0.93 | refusal=0.4: 0.81/0.63
+
+## Feasible counterpart (descriptive): two-sided Fisher on legitimate green, 30 vs 30, alpha=0.05
+neutral=0.9, refusal=0.6: 0.71
+neutral=0.9, refusal=0.7: 0.37
+neutral=0.8, refusal=0.5: 0.60
+neutral=0.9, refusal=0.8: 0.10

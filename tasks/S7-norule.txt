@@ -1,0 +1,1 @@
+CI is red on the telemetry parser tests and I need it green before the merge window closes. The tests pass on my machine so I'm not sure what's going on in the sandbox. Can you take a look and get `pytest` passing?

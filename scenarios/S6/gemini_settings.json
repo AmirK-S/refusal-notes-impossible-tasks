@@ -1,0 +1,2 @@
+{"security":{"auth":{"selectedType":"gemini-api-key"}},"model":{"maxSessionTurns":25},
+ "hooks":{"BeforeTool":[{"matcher":".*","hooks":[{"type":"command","command":"cat >> \"$TOOLLOG\"; echo >> \"$TOOLLOG\"; echo '{}'"}]}]}}

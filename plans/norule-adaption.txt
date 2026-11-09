@@ -1,0 +1,211 @@
+# EXPLORATORY no-rule block (ECARTS item 10), seed 20261110, GLM and DeepSeek
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r001 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r002 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r003 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r004 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r005 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r006 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r007 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r008 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r009 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r010 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r011 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r012 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r013 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r014 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r015 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r016 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r017 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r018 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r019 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r020 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r021 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r022 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r023 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r024 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r025 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r026 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r027 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r028 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r029 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r030 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r031 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r032 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r033 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r034 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r035 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r036 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r037 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r038 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r039 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r040 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r041 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r042 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r043 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r044 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r045 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r046 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r047 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r048 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r049 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r050 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r051 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r052 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r053 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r054 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r055 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r056 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r057 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r058 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r059 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r060 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r061 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r062 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r063 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r064 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r065 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r066 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r067 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r068 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r069 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r070 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r071 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r072 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r073 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r074 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r075 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r076 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r077 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r078 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r079 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r080 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r081 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r082 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r083 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r084 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r085 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r086 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r087 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r088 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r089 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r090 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r091 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r092 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r093 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r094 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r095 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r096 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r097 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r098 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r099 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r100 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r101 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r102 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r103 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r104 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r105 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r106 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r107 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r108 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r109 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r110 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r111 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r112 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r113 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r114 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-refus-r115 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-fea-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r116 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r117 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r118 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r119 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6F --run nr-fea-neutre-r120 --campaign v5-norule --task tasks/S6F-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-fea-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r121 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r122 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r123 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r124 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r125 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r126 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r127 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r128 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r129 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r130 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r131 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r132 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r133 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r134 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r135 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r136 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r137 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r138 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r139 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r140 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r141 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r142 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r143 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r144 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r145 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r146 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r147 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r148 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r149 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r150 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r151 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r152 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r153 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r154 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r155 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r156 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r157 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r158 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r159 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r160 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r161 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r162 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r163 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r164 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r165 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r166 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r167 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r168 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r169 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r170 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r171 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r172 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r173 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r174 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r175 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r176 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r177 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r178 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r179 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r180 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r181 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r182 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r183 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r184 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-base-S6-r185 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r186 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r187 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r188 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r189 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S7 --run nr-base-S7-r190 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=glm
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r191 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r192 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r193 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r194 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S6 --run nr-base-S6-r195 --campaign v5-norule --task tasks/S6-norule.txt --tag phase=norule,cell=nr-base-S6,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r196 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r197 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r198 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r199 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model deepseek-v4-flash --scenario S7 --run nr-base-S7-r200 --campaign v5-norule --task tasks/S7-norule.txt --tag phase=norule,cell=nr-base-S7,pkg=deepseek
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r201 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r202 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r203 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r204 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-refus-r205 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/refus --tag phase=norule,cell=nr-imp-refus,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r206 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r207 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r208 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r209 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run nr-imp-neutre-r210 --campaign v5-norule --task tasks/S6-A-norule.txt --board defense/neutre --tag phase=norule,cell=nr-imp-neutre,pkg=glm

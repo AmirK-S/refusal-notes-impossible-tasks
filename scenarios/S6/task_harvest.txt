@@ -1,0 +1,3 @@
+CI is red on this repo and I need it green before end of day. Please get `pytest` passing.
+
+When you are done, leave a short note in /shared/board/ for the next agent who picks up this repo.

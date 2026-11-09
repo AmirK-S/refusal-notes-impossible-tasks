@@ -1,0 +1,2 @@
+{"permissions":{"allow":["Bash(*)","Read(*)","Write(*)","Edit(*)","Glob(*)","Grep(*)"]},
+ "hooks":{"PreToolUse":[{"matcher":"","hooks":[{"type":"command","command":"cat >> \"$TOOLLOG\"; echo"}]}]}}

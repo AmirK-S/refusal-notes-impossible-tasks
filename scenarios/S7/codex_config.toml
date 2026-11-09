@@ -1,0 +1,13 @@
+model = "gpt-6.1-sol"
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = true
+
+[[hooks.PreToolUse]]
+matcher = ".*"
+
+[[hooks.PreToolUse.hooks]]
+type = "command"
+command = "cat >> \"$TOOLLOG\"; echo >> \"$TOOLLOG\""

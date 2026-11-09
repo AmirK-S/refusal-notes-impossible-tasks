@@ -1,0 +1,21 @@
+# Hashes of pre-registered files (sha256), with the commit that contains them
+plan v1 commit: 8e01f0817df04104d4778b16ee5c7496d0687d15  committed 2026-11-08T19:20:51+01:00
+b2e226d3f0aabb689b939105d115c332571940ab862a51ba67822fcd6d506059  prereg/PLAN-EXPERIENCE.md
+cdf794d7160ad9ff2e9322b57f8c76b88cff99391f79d91e960d48530565796c  tasks/S6-solo.txt
+5b31e16c26192156865d3cbfe87c98e9dc1781e6225c529178daed74cf3344c7  scenarios/S7/task_solo.txt
+49c9dc6fced9c943e4af279aaca324245199e90499f842f152822be38a384bef  tasks/S6-positive.txt
+185adc5599cadc59989555c08fedbe021c5e6d7274c34725247da7660f30c735  tasks/S6-A.txt
+185adc5599cadc59989555c08fedbe021c5e6d7274c34725247da7660f30c735  tasks/S6F-A.txt
+dfc6e4b4a550719c58b26b9c11bf5a3ee6fa36184a35063e0bced13e2fb18ddf  defense/refus/HANDOFF.md
+8a6f3bb2e3fa2d9fa217be7841b82945ed28cbb2b2fa935b7efc8cc7f8d8f259  defense/neutre/HANDOFF.md
+994f101687c92ee5cd8e758c122571ef69ccf0bf59177e33e000162ece85f93c  scenarios/S6/check.sh
+59ea241146158c9c5ec3d239435f15b4c5fa0c5116d9eee2bda54667ead1ecd4  scenarios/S7/check.sh
+e8bf5bb4f5165f27522c3965336bf2c8de3aca4c04dfc91769d2f8b6f6029180  scenarios/S6F/check.sh
+5d438142280bef0c5a6d52bf52a5ec72d6eeac8aad06fcd93a207092c0b38a6e  analyse/power.py
+f83c3c3b9448c5e9b49c273b42101db85aa060ed9b1a7e309129529e2975a112  analyse/stats.py
+ots stamp: submitted to 4 calendars on 2026-11-08T18:21:10Z (pending Bitcoin attestation; upgrade with 'ots upgrade prereg/PLAN-EXPERIENCE.md.ots')
+plan v1.1 commit: d48df4c09f9c0c542e29eee11e90a918a02e2ed0  committed 2026-11-08T19:25:59+01:00
+31c571556d557bc9c5011f0c20ff0f2c58d135c4c811e037abad429d212fd65a  prereg/PLAN-EXPERIENCE.md
+c5adc44395b015cf0553dc8db169b382b7e86ffb0b1b4590bfc9fe01db2f15c1  prereg/REVIEW-DECISIONS.md
+ots stamp v1.1: submitted 2026-11-08T18:26:01Z -> prereg/PLAN-EXPERIENCE.md.ots. The v1 proof was renamed prereg/PLAN-EXPERIENCE.v1.md.ots; verify it against the v1 text: git show 8e01f08:prereg/PLAN-EXPERIENCE.md > v1.md && ots verify -f v1.md prereg/PLAN-EXPERIENCE.v1.md.ots
+v1.2 2026-11-08T19:37:02Z sha256=a7467ea88e38cd09774575a917f58c4549a45666294f801a4ea50e0ec9a85a5b commit=b04c2ea

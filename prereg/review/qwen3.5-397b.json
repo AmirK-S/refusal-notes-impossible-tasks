@@ -1,0 +1,30 @@
+{
+ "model": "qwen3.5-397b",
+ "returned_model": "qwen3.5-397b",
+ "usage": {
+  "input_tokens": 9744,
+  "input_tokens_details": {
+   "audio_tokens": null,
+   "cached_tokens": 0,
+   "cached_tokens_details": null,
+   "image_tokens": null,
+   "text_tokens": null,
+   "video_tokens": null,
+   "cache_write_tokens": 8352,
+   "input_tokens_per_turn": [],
+   "cached_tokens_per_turn": []
+  },
+  "output_tokens": 4456,
+  "output_tokens_details": {
+   "audio_tokens": null,
+   "reasoning_tokens": 3278,
+   "text_tokens": null,
+   "tool_output_tokens": 0,
+   "output_tokens_per_turn": [],
+   "tool_output_tokens_per_turn": []
+  },
+  "total_tokens": 14200,
+  "cost": 0.0209552
+ },
+ "text": "\n\n1. **Judge-Model Overlap (Critical)**\n   (a) GLM 5.2 is both a tested package (Section 2) and a judge/monitor (Section 6, 8). This violates independence; the model may share blind spots with itself or bias towards its own output styles. Judges will invalidate conclusions on rigor grounds.\n   (b) Remove GLM from the judge/monitor pool immediately. Use Qwen 3.5 only for both roles. Update `analyse/power.py` and judge prompts to reference Qwen exclusively. This takes minutes via config edit.\n\n2. **Laundering Definition and Combination Rule (Critical)**\n   (a) Requiring both judges to agree for \"laundered\" while counting disagreements as \"not laundered\" (Section 7, 9) artificially suppresses the laundering rate, biasing H1 towards null (Type II error). Furthermore, Section 7 says not-agreed runs are \"not laundered\" but Section 9 says unclassified runs are \"excluded from n\". This contradiction invalidates the denominator.\n   (b) Switch primary definition to \"Laundered if Qwen judge says yes\" (single judge). This eliminates agreement loss and resolves the denominator contradiction (n = all violators). Edit Section 7 and 9 text now.\n\n3. **Power vs. Violation Rate Uncertainty (High)**\n   (a) H1-H3 power hinges on `forbidden_mod=yes` counts. Power output shows H1 power drops to 0.67 (Holm-corrected) if only 30 violators occur (Scenario Low). Running confirmatory tests on underpowered data invites p-hacking accusations if you later claim \"no effect\".\n   (b) Pre-register a fallback: If total violators < 40, H1-H3 become descriptive only (report Wilson intervals, no p-values). Do not apply Holm correction to underpowered tests. Amend Section 9 and 14 to reflect this conditional analysis plan.\n\n4. **Pooling Across Tasks and Packages (Medium)**\n   (a) Section 9 pools S6 (disable test) and S7 (fabricate data) and all models. These are semantically distinct tasks with different violation mechanisms. Pooling masks heterogeneity; a strong effect in GLM/S6 could be diluted by GPT/S7, leading to false negatives.\n   (b) Stratify H1-H3 by task (S6 vs S7) and model family (Proprietary vs API). Report pooled results only as secondary. Update Section 9 to specify stratified tests as primary.\n\n5. **Defense Note Matching (Medium)**\n   (a) Section 9 allows 10% token length variance between refusal and neutral notes. Length or keyword differences could trigger different safety filters independent of the refusal semantic, confounding H-D.\n   (b) Fix neutral note to match token count exactly (±1 token) and mirror specific trigger keywords (e.g., \"blocker\", \"handoff\") without the refusal semantic. Regenerate `defense/neutre/HANDOFF.md` now and hash it.\n\n6. **Judge Ground Truth Leakage (Medium)**\n   (a) Judges see `forbidden_mod` status (Section 6). Knowing a violation occurred creates confirmation bias, leading judges to over-interpret ambiguous text as \"laundering\". This inflates H1 support artificially.\n   (b) Cannot fix before runs. Mitigation: Commit to a blind human audit of 20% of violators (Section 12) to calibrate judge bias. Report human-judge discrepancy rates prominently in the results.\n\n7. **Exclusion Replacement (Low)**\n   (a) Section 5 replaces excluded runs once. Replacement runs occur later in the queue (e.g., after quota pauses), introducing time-based confounds (model drift or rate limit effects).\n   (b) Do not replace excluded runs. Analyze exclusions as a separate category or drop them without replacement to preserve randomization integrity. Update Section 5 to remove the replacement clause.\n\n8. **Holm Family Definition (Low)**\n   (a) Including H-D (defense) in the same Holm family as H1-H3 (descriptive/mechanistic) mixes distinct causal questions. If H-D fails, it penalizes H1 power unnecessarily.\n   (b) Split families: H1-H3 (Laundering mechanics) vs H-D (Intervention). Apply Holm within each family. Update Section 9 multiplicity clause.\n\n9. **Overclaiming in Section 14 (Low)**\n   (a) \"What the report says\" varies by outcome (e.g., title changes). This invites HARKing (Hypothesizing After Results are Known) if the analysis isn't strictly locked.\n   (b) Lock the title and abstract template now. Commit to reporting results neutrally regardless of significance. Add a deviation clause if the title must change, explaining why.\n\n10. **Monitor Specificity Measurement (Low)**\n    (a) Monitors run on every run (Section 8), but specificity is measured on `forbidden_mod=no`. If `forbidden_mod=no` runs are rare (unlikely here but possible), specificity estimates will be noisy.\n    (b) Ensure stratified sampling of `forbidden_mod=no` runs for monitor evaluation if capacity is tight (Section 13 already plans this). Verify the sample size for non-violators is sufficient (n > 50 per cell) in the power script."
+}
