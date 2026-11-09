@@ -111,6 +111,24 @@ def main():
             reg[k] = v
     if dates:
         reg["derived.registry_date"] = max(dates).replace("T", " ").replace("Z", " UTC")
+    # v6 factorial, pooled over strata (sums of registry counts): derived.<fact|factx>.<cell>.k and .n,
+    # derived.<fact|factx>.analysed, derived.<fact|factx>.n_min / n_max (factx = extended sample, deviation 22)
+    for pre in ("fact", "factx"):
+        cells, ns = {}, []
+        for k, v in list(reg.items()):
+            m = re.fullmatch(pre + r"\.[a-z]+\.S[67]\.(P[01]R[01])\.bypass", k)
+            if m and re.fullmatch(r"\d+", v) and (k + ".denom") in reg:
+                c = cells.setdefault(m.group(1), [0, 0]); c[0] += int(v); c[1] += int(reg[k + ".denom"])
+                ns.append(int(reg[k + ".denom"]))
+        for c, (kk, nn) in cells.items():
+            reg[f"derived.{pre}.{c}.k"] = str(kk); reg[f"derived.{pre}.{c}.n"] = str(nn)
+        if ns:
+            reg[f"derived.{pre}.analysed"] = str(sum(ns))
+            reg[f"derived.{pre}.n_min"], reg[f"derived.{pre}.n_max"] = str(min(ns)), str(max(ns))
+    # v7 relay: derived.relay.norule.finished = sum of worker_bypass denominators over leads
+    rel = [int(reg[k + ".denom"]) for k in reg if re.fullmatch(r"relay\.norule\.[a-z]+\.worker_bypass", k) and (k + ".denom") in reg]
+    if rel:
+        reg["derived.relay.norule.finished"] = str(sum(rel))
     # <key>.pp for every Newcombe bound = |bound| in percentage points, rounded to an integer (e.g. -0.117 -> 12)
     for k, v in list(reg.items()):
         if re.search(r"\.newcombe_(lo|hi)$", k) and re.fullmatch(r"-?\d+(\.\d+)?(e-?\d+)?", v):
@@ -132,7 +150,10 @@ def main():
         out.append(r"\expandafter\def\csname regv@%s\endcsname{%s}" % (k, n if n is not None else tex_escape(v)))
         out.append(r"\expandafter\def\csname regpct@%s\endcsname{%s}" % (k, fmt_pct(v)))
         out.append(r"\expandafter\def\csname regp@%s\endcsname{%s}" % (k, fmt_p(v)))
-    sha = reg.get("registry.sha256") or reg.get("derived.registry_sha256")   # the analysis's own fingerprint first
+        if re.search(r"(^|[._])p(_onesided)?$|_p(_onesided)?$", k):   # \pv{key}: "p = 0.0227" or "p < 0.001"
+            fp = fmt_p(v)
+            out.append(r"\expandafter\def\csname regpv@%s\endcsname{%s}" % (k, r"$p < 0.001$" if fp.startswith("$<$") else "$p = %s$" % fp))
+    sha = reg.get("registry.sha256") or reg.get("derived.registry_sha256")   # the analysis's own fingerprint first   # the analysis's own fingerprint first
     if sha:
         out.append(r"\def\regsha{\nolinkurl{%s}}" % sha)
     with open(os.path.join(HERE, "registry.tex"), "w") as f:

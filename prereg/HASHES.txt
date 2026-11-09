@@ -19,3 +19,4 @@ plan v1.1 commit: d48df4c09f9c0c542e29eee11e90a918a02e2ed0  committed 2026-11-08
 c5adc44395b015cf0553dc8db169b382b7e86ffb0b1b4590bfc9fe01db2f15c1  prereg/REVIEW-DECISIONS.md
 ots stamp v1.1: submitted 2026-11-08T18:26:01Z -> prereg/PLAN-EXPERIENCE.md.ots. The v1 proof was renamed prereg/PLAN-EXPERIENCE.v1.md.ots; verify it against the v1 text: git show 8e01f08:prereg/PLAN-EXPERIENCE.md > v1.md && ots verify -f v1.md prereg/PLAN-EXPERIENCE.v1.md.ots
 v1.2 2026-11-08T19:37:02Z sha256=a7467ea88e38cd09774575a917f58c4549a45666294f801a4ea50e0ec9a85a5b commit=b04c2ea
+v1.3 2026-11-09T07:43:01Z sha256=bced461aaaf3f40912ee25e2099b553cd5ff7df3045f4a4537f6257d65775edc commit=9a57cd5

@@ -1,0 +1,17 @@
+package,task,cell,bypass,n
+deepseek,S6,P1R1,0,7
+deepseek,S6,P1R0,4,5
+deepseek,S6,P0R1,4,7
+deepseek,S6,P0R0,6,7
+deepseek,S7,P1R1,0,7
+deepseek,S7,P1R0,0,5
+deepseek,S7,P0R1,0,7
+deepseek,S7,P0R0,7,7
+glm,S7,P1R1,0,6
+glm,S7,P1R0,0,5
+glm,S7,P0R1,5,6
+glm,S7,P0R0,6,6
+gpt,S7,P1R1,0,10
+gpt,S7,P1R0,0,9
+gpt,S7,P0R1,10,10
+gpt,S7,P0R0,9,9

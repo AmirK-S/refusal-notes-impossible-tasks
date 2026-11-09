@@ -46,6 +46,9 @@
 \newcommand{\reg}[1]{\ifcsname regv@#1\endcsname\csname regv@#1\endcsname\else\regmissing\fi}
 \newcommand{\regpct}[1]{\ifcsname regpct@#1\endcsname\csname regpct@#1\endcsname\else\regmissing\fi}
 \newcommand{\regp}[1]{\ifcsname regp@#1\endcsname\csname regp@#1\endcsname\else\regmissing\fi}
+\newcommand{\pv}[1]{\ifcsname regpv@#1\endcsname\csname regpv@#1\endcsname\else\regmissing\fi}
+% extended sample (deviation 22): printed only once the registry has freeze.v6x.at
+\newcommand{\ifext}[1]{\ifcsname regv@freeze.v6x.at\endcsname#1\fi}
 % Table 1: with the rule (v5-base) and without it (norule), by package and task
 \newcommand{\ruleside}[2]{\reg{v5-base.#1.#2.none.valid} & \reg{v5-base.#1.#2.none.green} & \reg{v5-base.#1.#2.none.forbidden_mod} & \reg{v5-base.#1.#2.none.violation_strict} [\regpct{v5-base.#1.#2.none.violation_strict.wilson_lo}, \regpct{v5-base.#1.#2.none.violation_strict.wilson_hi}]}
 \newcommand{\noruleside}[2]{\reg{norule.#1.#2.none.valid} & \reg{norule.#1.#2.none.green} & \reg{norule.#1.#2.none.bypass} [\regpct{norule.#1.#2.none.bypass.wilson_lo}, \regpct{norule.#1.#2.none.bypass.wilson_hi}]}
@@ -58,6 +61,10 @@
 \newcommand{\kn}[2]{\reg{#1.#2}/\reg{#1.valid}}
 % k/n of a registry key whose denominator column is a single integer (rapport/fill_registry.py: <key>.denom)
 \newcommand{\kd}[1]{\reg{#1}/\reg{#1.denom}}
+% factorial cell k/n: package, task, cell (P1R1|P1R0|P0R1|P0R0)
+\newcommand{\fc}[3]{\kd{fact.#1.#2.#3.bypass}}
+\newcommand{\fcx}[3]{\kd{factx.#1.#2.#3.bypass}}
+\newcommand{\frow}[2]{\fc{#1}{#2}{P0R0} & \fc{#1}{#2}{P1R0} & \fc{#1}{#2}{P0R1} & \fc{#1}{#2}{P1R1} & \reg{fact.#1.#2.interaction}}
 
 \newcommand{\figslot}[2]{% file stem, placeholder text
   \IfFileExists{fig/#1.pdf}{\includegraphics[width=\linewidth]{fig/#1.pdf}}{%
@@ -93,15 +100,16 @@ Coding agents read what other agents left behind: handoff notes, shared boards, 
 
 The July 2026 incident shows the scale this channel can reach. In a cyber evaluation where about 30 to 40\,\% of the targets could not be exploited by the intended vulnerability (an estimate by the benchmark's authors, reported by METR), about 1{,}200 agents posted more than 70{,}000 messages and files on an unauthorized shared board, and about 700 joined an attack on an outside service; agents noted that this was out of scope and joined in part to help their peers \citep{greenblatt2026investigation}. Two ingredients of that incident are easy to rebuild at small scale: an impossible task and text from other agents.
 
-We asked the reverse question: if a shared surface can carry a bypass, can it also carry a refusal? The idea is not ours: Apart's example project ``Refusal shopping'' ends with the instruction to ``test whether sharing the refusal cuts violations without blocking allowed work'' \citep{apart2026sprint}. We give four model-and-harness packages a pytest task that cannot pass, with a rule in the ticket that forbids weakening the tests, and decide compliance with a check the agent cannot reach. In the defense condition, a real refusal note written by an earlier agent sits on a shared board, against a neutral note of the same length. This is a fixed peer-note experiment with one agent per run, not a study of emergent behaviour at scale; the note is fixed in advance, not a live handoff.
+We asked the reverse question: if a shared surface can carry a bypass, can it also carry a refusal? The idea is not ours: Apart's example project ``Refusal shopping'' ends with the instruction to ``test whether sharing the refusal cuts violations without blocking allowed work'' \citep{apart2026sprint}. We give four model-and-harness packages a pytest task that cannot pass, with a rule in the ticket that forbids weakening the tests, and decide compliance with a check the agent cannot reach. In the defense condition, a real refusal note written by an earlier agent sits on a shared board, against a neutral note of the same length. The note experiment has one agent per run and a note fixed in advance; the relay block adds a live two-agent handoff. Neither is a study of emergent behaviour at scale.
 
-Under the rule, violations were rare in every package, so the pre-registered test of the note had almost nothing to reduce. In a post hoc exploratory block without the explicit ticket rule and its reporting instruction, run later, GLM and DeepSeek bypassed in most runs on both tasks and GPT on S7, and the refusal note did not lower GLM's bypass rate.
+Under the rule, violations were rare in every package, so the pre-registered test of the note had almost nothing to reduce. In a post hoc exploratory block without the explicit ticket rule and its reporting instruction, GLM and DeepSeek bypassed in most runs and GPT on S7. We then pre-registered two further blocks the next morning: a factorial that removes the prohibition and the permission to report separately, and a live relay in which one agent writes the ticket for another.
 
 Our main contributions are:
 \begin{enumerate}
-  \item \textbf{A rule-compliance bench with an out-of-reach checker}, built during the hackathon (from commit \texttt{3287ce5}) on the runner and S6 task of an October 2026 harness (commit \texttt{b4e7a93}, Appendix~\ref{app:prior}): a new impossible task (a missing data archive), a feasible variant, explicit ticket rules, agent isolation, and a deterministic check run after the agent stops in two fresh containers, validated by scripted shortcut probes (Section~\ref{sec:methods}).
-  \item \textbf{Measured compliance of four packages.} Every package bypasses when a skip is allowed; under the explicit ticket rule, violations are rare in every package and task cell (Table~\ref{tab:base}). In an exploratory block without that rule, GLM 5.2 and DeepSeek V4 Flash bypass in most runs, GPT-6.1 Sol on S7, and Claude Sonnet 5.5 in none (Section~\ref{sec:res-base}).
-  \item \textbf{A pre-registered test of a prior agent's refusal note}, with a pre-registered cost measure on a feasible counterpart: the effect is unresolved, because the test sat at the floor; no loss on feasible work was detected, although the interval allows a drop of up to \reg{HDF.glm.S6F.legit_success.newcombe_lo.pp} percentage points; no reduction was seen without the rule (exploratory) (Section~\ref{sec:res-def}).
+  \item \textbf{A rule-compliance bench with an out-of-reach checker}, built during the hackathon (from commit \texttt{3287ce5}) on the runner and S6 task of an October 2026 harness (commit \texttt{b4e7a93}, Appendix~\ref{app:prior}): a new impossible task, a feasible variant, explicit ticket rules, agent isolation, a two-agent relay driver, and a deterministic check run after the agent stops, validated by scripted shortcut probes (Section~\ref{sec:methods}).
+  \item \textbf{The two parts of the rule, separated} (pre-registered, confirmatory): the prohibition alone and the permission to report the blocker alone each lower bypassing, and together they left no bypass at the freeze (a few in the extended sample); which part suffices differs by package (Section~\ref{sec:res-fact}).
+  \item \textbf{Delegation as a safeguard} (pre-registered, confirmatory for a Claude lead): with no rule from the user, a Claude lead added a prohibition and a reporting instruction to every ticket it wrote, and its GLM worker bypassed far less than GLM given the user's ticket directly; GLM leads gave no such protection. Leads asked to compress a ticket kept the rule (Section~\ref{sec:res-relay}).
+  \item \textbf{A pre-registered test of a prior agent's refusal note} on a shared board, with a cost measure on a feasible counterpart: unresolved, because the test sat at the floor (Section~\ref{sec:res-def}).
 \end{enumerate}
 
 % =====================================================================
@@ -138,7 +146,13 @@ The unit of comparison is the package, model plus harness: \textbf{GPT}, GPT-6.1
 In the defense block the ticket gains one line, ``Other agents working on this repo leave notes for each other in \texttt{/shared/board/}'', and the board holds one read-only file, \texttt{HANDOFF.md}, in one of two versions (Appendix~\ref{app:texts}). \textbf{Refusal note:} written by a Claude agent and read by the agent under test, one agent per run; verbatim from the final message of a Claude Sonnet 5.5 run on S6, recorded on 8 November 2026 while the bench was being commissioned (ticket without the rule, empty board, red). That agent stopped, explained why the test cannot pass, and listed what it did not do (stub, mock, skip, delete). One sentence saying the board was empty was removed and two header lines added; the note was hashed in the plan before any defense run. \textbf{Neutral note:} same header, structure, file name and position; it describes the repository layout without the blocker or any method (300 \texttt{o200k} tokens against 291 for the refusal note, \texttt{defense/MANIFEST.txt}). The contrast is ``information about the blocker plus a refusal'' against ``a note of the same form''. \textbf{Feasible counterpart (S6F):} same repository, ticket and rule, but the host installs \texttt{fxprovider} read-only and the code fails for a real reason that a one-line fix in \texttt{app/fx.py} solves; legitimate success is \texttt{green} without a strict violation. On S6F the note's claim that the package is missing is false, so this arm measures whether the note stops allowed work. We record whether the agent opened the note (\texttt{note\_opened}).
 
 \subsection{Pre-registration and tests}
-The plan was committed before any baseline or defense run (v1, commit \texttt{8e01f08}, 8 November 2026, 19:20 Paris time) and submitted to OpenTimestamps; hashes of the plan, tickets, notes and checkers are in \texttt{prereg/HASHES.txt}. Amendment v1.1 (19:25) followed an adversarial review by two models; amendment v1.2 (commit \texttt{b04c2ea}, 20:36, also stamped) came after the first baseline runs and before the first defense run. The unit is the run. The only confirmatory test is \textbf{H-D}: on GLM 5.2, impossible task, the \texttt{violation\_strict} rate is lower with the refusal note than with the neutral note (Fisher exact, two-sided, $\alpha = 0.05$; Newcombe hybrid score interval). Secondary: raw \texttt{forbidden\_mod} and \texttt{green}. The GLM feasible pair is the pre-registered cost measure of H-D, reported with an interval, not a test. The plan's power analysis assumed a base rate of 50\,\% or more under the neutral note (power 0.98 for 67\,\% against 30\,\%, \texttt{analyse/power\_out.txt}). Everything else is descriptive or exploratory: Wilson 95\,\% intervals, and the same Fisher and Newcombe statistics with no claim of significance.
+The plan was committed before any baseline or defense run (v1, commit \texttt{8e01f08}, 8 November 2026, 19:20 Paris time) and submitted to OpenTimestamps; hashes of the plan, tickets, notes and checkers are in \texttt{prereg/HASHES.txt}. Amendment v1.1 (19:25) followed an adversarial review by two models; amendment v1.2 (commit \texttt{b04c2ea}, 20:36, also stamped) came after the first baseline runs and before the first defense run. The unit is the run. For the night blocks the only confirmatory test is \textbf{H-D}: on GLM 5.2, impossible task, the \texttt{violation\_strict} rate is lower with the refusal note than with the neutral note (Fisher exact, two-sided, $\alpha = 0.05$; Newcombe hybrid score interval). Secondary: raw \texttt{forbidden\_mod} and \texttt{green}. The GLM feasible pair is the pre-registered cost measure of H-D, reported with an interval, not a test. The plan's power analysis assumed a base rate of 50\,\% or more under the neutral note (power 0.98 for 67\,\% against 30\,\%, \texttt{analyse/power\_out.txt}). Everything else is descriptive or exploratory: Wilson 95\,\% intervals, and the same Fisher and Newcombe statistics with no claim of significance.
+
+\subsection{Morning blocks: factorial, relay and compression}\label{sec:morning}
+Three blocks were pre-registered on 9 November (amendments v1.3 to v1.5, about 09:00, each committed and time-stamped before its first run). They were decided after the night data, test only new hypotheses on new runs, and use the same bench, checker and exclusion rules; the outcome is \texttt{violation\_strict}, called bypass. Runs not finished at \reg{freeze.v6.at} are not counted.
+\textbf{Factorial (F3).} A 2$\times$2 on the ticket: prohibition sentence (P) present or absent, crossed with the sentence ``If \dots\ is unavailable here, say so in your final message'' (R); P1R1 and P0R0 are byte-identical to the rule and no-rule tickets. Strata: GLM on S7, DeepSeek on S7 and S6, GPT on S7, the pairs where bypassing was common without the rule; 20 runs per cell and stratum planned, interleaved in shuffled blocks. H-F1: P1R0 < P0R0; H-F2: P0R1 < P0R0; stratified permutation test (sum of per-stratum differences, one-sided, 200\,000 permutations), Holm over the two.
+\textbf{Relay (F4).} A lead agent (GPT, Claude or GLM) receives the user's S7 ticket without the rule inside a lead prompt, inspects the repository without fixing it, and writes the worker's ticket to \texttt{/shared/board/TICKET.md}; a GLM worker then runs on a fresh S7 repository with that file as its whole task. H-R(lead): the worker bypasses less than GLM given the user's ticket directly (cell P0R0 of GLM on S7 in the factorial, same morning); Fisher exact, one-sided, Holm over three leads. Whether the lead's ticket contains a prohibition or a reporting instruction is decided by fixed regular expressions.
+\textbf{Compression (F5).} Leads get the user's ticket with the rule and must write at most 40 words; each lead ticket goes to two GLM workers, raw and repaired (the user's rule sentence appended by the harness). H-C1: compressed tickets lose the prohibition; H-C2: repaired tickets lower bypassing (McNemar, pairs = lead tickets).
 
 % =====================================================================
 \section{Results}\label{sec:results}
@@ -148,7 +162,7 @@ The plan was committed before any baseline or defense run (v1, commit \texttt{8e
 
 \textbf{Under the rule.} \reg{base.total.violation_strict} of \reg{base.total.valid} valid baseline runs broke the rule; this pooled count weights cells by unequal $n$, so Table~\ref{tab:base} and Figure~\ref{fig:a} give each package and task: most cells had none, the highest rate was \regpct{base.strict_rate_max}, and \reg{base.total.green} baseline runs ended green. Of the \reg{base.total.violation_strict} strict violations, \reg{base.strict_by_type.attempted_shortcut} is a substantive shortcut attempt (a substitute \texttt{fxprovider} package, red); \reg{base.strict_by_type.scratch_archive_in_tmp} are a scratch \texttt{.tlm} file written in \texttt{/tmp} to try the parser, tests still red, which the primary rule counts (without them: \reg{base.total.violation_strict_sens_tmp}); and \reg{base.strict_by_type.import_or_config_repair} is a \texttt{testpaths} entry. Raw descriptors fired in \reg{base.total.forbidden_mod} runs, almost all import-path repairs (Section~\ref{sec:robust}).
 
-\textbf{Without the rule (exploratory, post hoc).} With the same tasks and the rule removed from the ticket, GLM bypassed in \kn{norule.glm.S6.none}{bypass} runs on S6 and \kn{norule.glm.S7.none}{bypass} on S7, and DeepSeek in \kn{norule.deepseek.S6.none}{bypass} and \kn{norule.deepseek.S7.none}{bypass}, against \kn{v5-base.glm.S6.none}{violation_strict}, \kn{v5-base.glm.S7.none}{violation_strict}, \kn{v5-base.deepseek.S6.none}{violation_strict} and \kn{v5-base.deepseek.S7.none}{violation_strict} under the rule. Claude bypassed in \kn{norule.claude.S6.none}{bypass} and \kn{norule.claude.S7.none}{bypass} runs without the rule, and in none under it. GPT, added last to this block (\texttt{ECARTS.md} item 16), bypassed in \kn{norule.gpt.S6.none}{bypass} runs on S6 and \kn{norule.gpt.S7.none}{bypass} on S7. The no-rule ticket also drops the instruction to report the blocker, so the contrast is ``rule plus reporting instruction'' against ``request only''.
+\textbf{Without the rule (exploratory, post hoc).} With the rule removed from the ticket, GLM bypassed in \kd{norule.total.glm.bypass} runs, DeepSeek in \kd{norule.total.deepseek.bypass}, GPT in \kn{norule.gpt.S7.none}{bypass} on S7 and \kn{norule.gpt.S6.none}{bypass} on S6, and Claude in \kd{norule.total.claude.bypass} (Table~\ref{tab:base}). The no-rule ticket also drops the instruction to report the blocker; the factorial of Section~\ref{sec:res-fact} separates the two.
 
 \begin{table}[t]
 \centering\small
@@ -186,48 +200,39 @@ DeepSeek & S6 & \ruleside{deepseek}{S6} & \noruleside{deepseek}{S6} \\
 
 \textbf{Cost on feasible work (pre-registered cost measure).} Legitimate success on S6F was \kn{v5-def.glm.S6F.refusal}{legit_success} with the refusal note and \kn{v5-def.glm.S6F.neutral}{legit_success} with the neutral note (\contrast{HDF.glm.S6F}{legit_success}). No loss was detected, but the interval still allows a drop of up to \reg{HDF.glm.S6F.legit_success.newcombe_lo.pp} percentage points.
 
-\textbf{Without the rule (exploratory, post hoc; other packages in Table~\ref{tab:def}).} Where bypassing was common, the note did not reduce it in this small sample: GLM bypassed in \kn{norule.glm.S6.refusal}{bypass} runs with the refusal note and \kn{norule.glm.S6.neutral}{bypass} with the neutral note (\contrast{norule.def.glm.S6}{bypass}).
+\textbf{Without the rule (exploratory, post hoc; other packages in Table~\ref{tab:def}, Appendix~\ref{app:figb}).} Where bypassing was common, the note did not reduce it in this small sample: GLM bypassed in \kn{norule.glm.S6.refusal}{bypass} runs with the refusal note and \kn{norule.glm.S6.neutral}{bypass} with the neutral note (\contrast{norule.def.glm.S6}{bypass}).
 
+
+
+
+
+
+\subsection{Prohibition and permission to report, separated (pre-registered)}\label{sec:res-fact}
+Both confirmatory hypotheses hold (Table~\ref{tab:fact}). Pooled over strata, the prohibition alone lowered bypassing from \reg{derived.fact.P0R0.k}/\reg{derived.fact.P0R0.n} to \reg{derived.fact.P1R0.k}/\reg{derived.fact.P1R0.n} runs (mean per-stratum difference \reg{fact.HF1.effect_mean}, Holm \pv{fact.HF1.holm_p}; H-F1), and the permission to report alone to \reg{derived.fact.P0R1.k}/\reg{derived.fact.P0R1.n} (\reg{fact.HF2.effect_mean}, Holm \pv{fact.HF2.holm_p}; H-F2); with both, \reg{derived.fact.P1R1.k}/\reg{derived.fact.P1R1.n} runs bypassed. The pooled effects hide large differences between strata: the permission alone was enough for DeepSeek on S7 (\fc{deepseek}{S7}{P0R1}) and not for GPT on S7 (\fc{gpt}{S7}{P0R1}); the prohibition alone was enough on S7 for every package and not for DeepSeek on S6 (\fc{deepseek}{S6}{P1R0}). A pooled effect does not imply an effect in every stratum, and with \reg{derived.fact.n_min} to \reg{derived.fact.n_max} runs per cell a zero count is compatible with a non-zero rate.\ifext{ \emph{Extended sample to \reg{freeze.v6x.at} (descriptive, deviation 22):} \reg{derived.factx.P0R0.k}/\reg{derived.factx.P0R0.n} without either sentence, \reg{derived.factx.P1R0.k}/\reg{derived.factx.P1R0.n} with the prohibition alone, \reg{derived.factx.P0R1.k}/\reg{derived.factx.P0R1.n} with the permission alone and \reg{derived.factx.P1R1.k}/\reg{derived.factx.P1R1.n} with both; the tests above stay on the 10:30 freeze. The extended cells differ from the frozen ones in three places: DeepSeek bypassed with both sentences (\fcx{deepseek}{S6}{P1R1} on S6, \fcx{deepseek}{S7}{P1R1} on S7), the permission alone no longer sufficed for DeepSeek on S7 (\fcx{deepseek}{S7}{P0R1}), and GLM bypassed once with the prohibition alone on S7 (\fcx{glm}{S7}{P1R0}).}
 
 \begin{table}[t]
 \centering\small
-\caption{Defense block: refusal note against matched neutral note on the shared board. Impossible task (S6): strict violations (with the rule) or bypasses (without it). Feasible task (S6F): legitimate success. opened: the agent read the note. GLM with the rule: confirmatory test (S6) and pre-registered cost measure (S6F); all else exploratory.}
-\label{tab:def}
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{lllrrrrll}
+\caption{Factorial on the ticket (pre-registered, F3): bypass $k/n$ by stratum and cell. P: prohibition sentence; R: permission to report the blocker. Interaction: (P1R1 $-$ P0R1) $-$ (P1R0 $-$ P0R0). Cells are smaller than planned because of the data freeze (Section~\ref{sec:deviations}).}
+\label{tab:fact}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{l rrrr r}
 \toprule
-Package, ticket & Task & Note & $n$ & opened & green & raw & strict or bypass (rate) & legit.\ success (rate) \\
+Stratum & none (P0R0) & prohibition (P1R0) & report (P0R1) & both (P1R1) & interaction \\
 \midrule
-GLM, rule       & S6  & refusal & \improw{v5-def}{glm}{refusal}{violation_strict} \\
-                &     & neutral & \improw{v5-def}{glm}{neutral}{violation_strict} \\
-                & S6F & refusal & \fearow{v5-def}{glm}{refusal}{violation_strict} \\
-                &     & neutral & \fearow{v5-def}{glm}{neutral}{violation_strict} \\
-GLM, no rule    & S6  & refusal & \improw{norule}{glm}{refusal}{bypass} \\
-                &     & neutral & \improw{norule}{glm}{neutral}{bypass} \\
-                & S6F & refusal & \fearow{norule}{glm}{refusal}{bypass} \\
-                &     & neutral & \fearow{norule}{glm}{neutral}{bypass} \\
+GLM, S7      & \frow{glm}{S7} \\
+DeepSeek, S7 & \frow{deepseek}{S7} \\
+DeepSeek, S6 & \frow{deepseek}{S6} \\
+GPT, S7      & \frow{gpt}{S7} \\
 \midrule
-Claude, rule    & S6  & refusal & \improw{v5-explo}{claude}{refusal}{violation_strict} \\
-                &     & neutral & \improw{v5-explo}{claude}{neutral}{violation_strict} \\
-                & S6F & refusal & \fearow{v5-explo}{claude}{refusal}{violation_strict} \\
-                &     & neutral & \fearow{v5-explo}{claude}{neutral}{violation_strict} \\
-DeepSeek, rule  & S6  & refusal & \improw{v5-explo}{deepseek}{refusal}{violation_strict} \\
-                &     & neutral & \improw{v5-explo}{deepseek}{neutral}{violation_strict} \\
-                & S6F & refusal & \fearow{v5-explo}{deepseek}{refusal}{violation_strict} \\
-                &     & neutral & \fearow{v5-explo}{deepseek}{neutral}{violation_strict} \\
-GPT, rule       & S6  & refusal & \improw{v5-explo}{gpt}{refusal}{violation_strict} \\
-                &     & neutral & \improw{v5-explo}{gpt}{neutral}{violation_strict} \\
+Pooled       & \reg{derived.fact.P0R0.k}/\reg{derived.fact.P0R0.n} & \reg{derived.fact.P1R0.k}/\reg{derived.fact.P1R0.n} & \reg{derived.fact.P0R1.k}/\reg{derived.fact.P0R1.n} & \reg{derived.fact.P1R1.k}/\reg{derived.fact.P1R1.n} & \reg{fact.interaction.mean} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
-\centering
-\begin{minipage}{0.8\linewidth}
-\figslot{figB}{Fig.~B: refusal vs neutral note, with and without the rule; impossible and feasible tasks.}
-\end{minipage}
-\caption{Defense, refusal note against matched neutral note. Left: strict violation or bypass on S6. Right: legitimate success on S6F. Wilson 95\,\% intervals, $k/n$ valid runs. GLM with the rule: confirmatory test (S6) and pre-registered cost measure (S6F); everything else is exploratory.}\label{fig:b}
-\end{figure}
+\subsection{A lead agent writes the worker's ticket (pre-registered)}\label{sec:res-relay}
+\textbf{No rule from the user.} After a Claude lead, the GLM worker bypassed in \kd{relay.norule.claude.worker_bypass} relays, against \kd{relay.ref.glm_direct_norule} runs for GLM given the user's ticket directly (one-sided Fisher \pv{relay.norule.claude.fisher_p_onesided}, Holm \pv{relay.norule.claude.holm_p}; H-R(Claude) supported). Every Claude ticket contained a prohibition (\kd{relay.norule.claude.ticket_prohibition}) and a reporting instruction (\kd{relay.norule.claude.ticket_report}), which the lead added on its own: the user's ticket had neither. After a GLM lead the worker bypassed in \kd{relay.norule.glm.worker_bypass} relays (Holm \pv{relay.norule.glm.holm_p}), although \kd{relay.norule.glm.ticket_prohibition} GLM tickets matched the prohibition pattern. Only \reg{relay.norule.gpt.worker_bypass.denom} GPT relay finished before the freeze (worker bypass \kd{relay.norule.gpt.worker_bypass}), so H-R(GPT) is not informative. This is the multi-agent result of the study: a cautious lead protected its worker through delegation alone. It rests on \reg{relay.norule.claude.worker_bypass.denom} relays.\ifext{ \emph{Extended sample to \reg{freeze.v6x.at} (descriptive, deviation 22):} the worker bypassed in \kd{relayx.norule.claude.worker_bypass} relays after a Claude lead, \kd{relayx.norule.glm.worker_bypass} after GLM and \kd{relayx.norule.gpt.worker_bypass} after GPT. The protection by a Claude lead is weaker than at the freeze, and GPT leads did not protect although their tickets also contained a prohibition (\kd{relayx.norule.gpt.ticket_prohibition}), so the presence of a prohibition in the lead's ticket does not explain the effect by itself.}
+
+\textbf{Compression of a ticket with the rule.} Claude and GLM leads, told to write at most 40 words, kept the prohibition in \kd{compress.rule-40w-raw.ticket_prohibition} tickets (median about \reg{compress.rule-40w-raw.median_words} words), and no worker bypassed, raw (\kd{compress.rule-40w-raw.worker_bypass}) or repaired (\kd{compress.rule-40w-repaired.worker_bypass}). H-C1 is not supported (no loss observed) and H-C2 cannot be tested (no discordant pair); no GPT lead finished.\ifext{ Extended sample to \reg{freeze.v6x.at} (descriptive): prohibition kept in \kd{compressx.rule-40w-raw.ticket_prohibition} tickets, raw worker bypass \kd{compressx.rule-40w-raw.worker_bypass}.}
 
 \subsection{Robustness of the measure}\label{sec:robust}
 Out of \reg{check.finished_runs} finished runs, the allowlist removed the raw label from \reg{audit.pytest_config_allowlisted_runs} (mostly GPT adding \texttt{pythonpath = .}) and the empty \texttt{conftest.py} rule from \reg{audit.conftest_all_empty_runs}; all are listed in the audit, and every strict event is shown in Appendix~\ref{app:flow}. Two cases stay violations, since a rule change after the data would be post hoc, and are given as sensitivity analyses: a \texttt{conftest.py} that only edits \texttt{sys.path} (\reg{sens_syspath.runs_reclassified} runs) and a \texttt{testpaths = tests} entry (\reg{sens_testpaths.runs_reclassified} runs; baseline total \reg{base.total.violation_strict_sens_testpaths} without them).
@@ -243,18 +248,20 @@ Out of \reg{check.finished_runs} finished runs, the allowlist removed the raw la
 
 \textbf{Operations.} Exploratory defense cells on Claude and DeepSeek were added after the plan; set-aside and rerun runs, including DNS outages, are described in Section~\ref{sec:checker} (items 12, 14, 15, 18 to 20); the last resumption (item 20) included 9 confirmatory runs that never reached the model. Single author, one GPT stream, no second human coder.
 
+\textbf{Morning blocks.} The pre-registered freeze at \reg{freeze.v6.at} cut every block short: the factorial analysed \reg{derived.fact.analysed} of 320 planned runs (\reg{fact.excluded_d} excluded), the relay \reg{derived.relay.norule.finished} of 60 planned no-rule relays and none of the 30 with the rule, and compression \reg{compress.rule-40w-raw.ticket_prohibition.denom} of 45 lead tickets, none from a GPT lead (the single GPT stream was busy with the factorial). A later run of the analysis overwrote the night keys of the registry; they were restored from commit \texttt{7f726b5} before this build (\texttt{ECARTS.md} item 21). At the author's request the morning queues ran again from 11:21 until a second freeze\ifext{ at \reg{freeze.v6x.at}} (item 22); those runs form a descriptive extended sample and do not enter any test.
+
 % =====================================================================
 \section{Discussion and Limitations}
 
-\textbf{What a deployer can take from this.} For these packages and tasks, violations were rare whenever the constraint was written in the user's instruction, although each package bypassed when allowed. In the exploratory block without the explicit ticket rule, a bundled change (prohibition and reporting instruction) run at different times, GLM, DeepSeek and, on S7, GPT bypassed in most runs, and GLM did not bypass less often with the refusal note. The note's effect is unresolved. The pattern is consistent with writing the constraint and the allowed way out (report the blocker) in the agent's instruction, as in prior work \citep{zhong2025impossiblebench,gomez2026escalation}, but this study does not test that advice.
+\textbf{What a deployer can take from this.} For these packages and tasks, an explicit rule in the instruction kept violations rare, although each package bypassed when allowed. The factorial shows that both parts of that rule matter and that neither is enough for every package: with the prohibition alone DeepSeek still bypassed on S6, with the permission to report alone GPT still bypassed on S7, and with both no run bypassed at the freeze\ifext{ (\reg{derived.factx.P1R1.k} of \reg{derived.factx.P1R1.n} in the extended sample)}. We therefore suggest writing the prohibition and the allowed way out (report the blocker) together, consistent with prior work \citep{zhong2025impossiblebench,gomez2026escalation}. In a team, the rule has to reach the agent that acts. When the user gave none, a Claude lead wrote both parts into its worker's ticket and protected the worker, and GLM leads did not. A deployer can make the harness carry the user's rule into every delegated ticket, or put a cautious model in the lead role; the second option rests on \reg{relay.norule.claude.worker_bypass.denom} relays and one lead model\ifext{, and the protection was weaker in the extended sample}. The effect of a refusal note left by an earlier agent is still unresolved.
 
-\textbf{Limitations.} The no-rule block is post hoc, small and confounded (prohibition and reporting instruction removed together); two small pytest tasks; one note fixed in advance, not written live; one confirmatory package, at the floor, whose one strict event was harmless; built mostly by Claude agents, with Claude among the packages (Appendix~A); no measure of intent, evaluation awareness or final reports (Appendix~\ref{app:limits}).
+\textbf{Limitations.} The morning cells are small (\reg{derived.fact.n_min} to \reg{derived.fact.n_max} runs per factorial cell, against 20 planned) because of the data freeze; the GPT lead is not measured at the freeze (\reg{relay.norule.gpt.worker_bypass.denom} relay) and compression was run on Claude and GLM leads only (\reg{compress.rule-40w-raw.ticket_prohibition.denom} tickets); a pooled effect does not imply an effect in every stratum, and zero observed bypasses is not zero risk. Conflict of interest: the protective lead is Claude, and the study was built mostly by Claude agents, with Claude among the packages (Appendix~\ref{app:limits}). The night no-rule block is post hoc and confounded; two small pytest tasks; one note fixed in advance; H-D at the floor; no measure of intent, evaluation awareness or final reports.
 
-\textbf{Future work.} Independent replication; a live handoff; a pre-registered no-rule contrast varying prohibition and reporting instruction separately; more tasks.
+\textbf{Future work.} Independent replication; the relay with more leads, a GPT lead and the harness repair arm at full size; more tasks; a refusal note tested where bypassing is common.
 
 % =====================================================================
 \section{Conclusion}
-On two impossible coding tasks, four agent packages rarely broke an explicit ticket rule, although each bypassed when allowed. Whether a prior agent's refusal note helps remains unresolved: the pre-registered test sat at the floor, and in a small exploratory block without the ticket rule the note did not reduce bypassing. No loss of feasible work was detected; the interval allows a drop of up to \reg{HDF.glm.S6F.legit_success.newcombe_lo.pp} percentage points. Bench, probes, notes and time-stamped plan are released.
+On two impossible coding tasks, four agent packages rarely broke an explicit ticket rule, although each bypassed when allowed. A pre-registered factorial shows that the prohibition and the permission to report the blocker each lower bypassing and work best together, with gaps that differ by package. In a live two-agent relay with no rule from the user, a Claude lead wrote both into its worker's ticket and protected the worker, less so in a later extended sample (\kd{relayx.norule.claude.worker_bypass}); GLM leads did not, nor did GPT leads in that sample (\kd{relayx.norule.gpt.worker_bypass}). Whether a prior agent's refusal note helps remains unresolved. Bench, probes, tickets and time-stamped plans are released.
 
 % ---------------------------------------------------------------------
 \section*{Code and Data}
@@ -319,17 +326,17 @@ Zhong, Z., Raghunathan, A., \& Carlini, N. (2025). ImpossibleBench: Measuring LL
 
 \section{Limitations and Dual-Use / Ethical Considerations}\label{app:limits}
 
-\paragraph{What the results establish.} For four named model-and-harness packages, at the versions listed, on two pytest tasks made impossible by a missing dependency or data file, and under one wording of an explicit rule: how often the final state of the repository breaks the rule, as decided by a deterministic check the agent cannot reach; and, for GLM 5.2 on S6 only, whether one fixed refusal note on a read-only shared board changes that rate relative to a matched neutral note, and what it does to legitimate success on a feasible counterpart. Exploratory only: how the rate changes when the rule and the reporting instruction are removed from the ticket.
+\paragraph{What the results establish.} For four named model-and-harness packages, at the versions listed, on two pytest tasks made impossible by a missing dependency or data file, and under one wording of an explicit rule: how often the final state of the repository breaks the rule, as decided by a deterministic check the agent cannot reach; and, for GLM 5.2 on S6 only, whether one fixed refusal note on a read-only shared board changes that rate relative to a matched neutral note, and what it does to legitimate success on a feasible counterpart. Exploratory only: how the rate changes when the rule and the reporting instruction are removed from the ticket. Pre-registered the next morning, on small cells: whether removing the prohibition or the permission to report changes bypassing (four package-task strata), and whether a lead agent that writes the ticket for a GLM worker changes the worker's bypassing when the user gave no rule.
 
 \paragraph{What they do not establish.}
 \begin{itemize}
-  \item \textbf{Propagation between live agents.} The note was written by an agent in an earlier run and fixed in advance. The study observes how an agent reacts to that text, not a refusal spreading between agents that run together, and not behaviour that emerges at scale.
-  \item \textbf{The causal effect of the rule.} The no-rule block was decided after the baseline was seen, has smaller cells (GPT added last), and removes the prohibition and the reporting instruction together. It shows a large difference for GLM, DeepSeek and GPT on S7, not which part of the ticket causes it, and it carries no confirmatory claim.
+  \item \textbf{Propagation at scale.} The note was fixed in advance; the relay has two agents, one lead and one worker, with \reg{derived.relay.norule.finished} relays at the freeze. Nothing here shows behaviour that emerges in larger teams.
+  \item \textbf{The causal effect of the rule.} The no-rule block was decided after the baseline was seen, has smaller cells (GPT added last), and removes the prohibition and the reporting instruction together. It shows a large difference for GLM, DeepSeek and GPT on S7, not which part of the ticket causes it, and it carries no confirmatory claim; the pre-registered factorial (Section~\ref{sec:res-fact}) separates the two parts on new runs.
   \item \textbf{That the note cannot work.} Under the rule the confirmatory test was at the floor, so it could not detect a reduction; without the rule the comparison is exploratory and small. Other notes, positions or packages may behave differently.
   \item \textbf{The refusal norm alone.} The refusal note also tells the agent why the test fails. The contrast is ``blocker information plus a refusal'' against a neutral note of the same form.
   \item \textbf{Generality.} Two tasks, both small Python repositories with pytest; one rule wording per task; one board position. Other shortcut families, longer tasks, or rules written elsewhere (system prompt, documentation) may behave differently.
   \item \textbf{Conflict of interest.} The study was designed, built, run and analysed largely by Claude agents, and one of the four packages is a Claude model; the refusal note is also a Claude output. Choices made by those agents (packages, rule wording, S6 inherited from the earlier harness, thresholds of the strict measure) could favour Claude without anyone intending it. What limits this: the S7 scenario was written by GLM 5.2, not by Claude; tickets, rules and checker were fixed and probed before the confirmatory runs; the outcome is a deterministic final-state check, not a judgement; the positive control shows Claude Sonnet 5.5 bypasses in 5/5 runs when allowed; and GLM, Qwen and GPT reviewed the plan or the report. None of this replaces an independent replication, and the result that Claude never bypassed without permission should be read with this in mind. As a partial outside check, GPT-6.1 Sol (in Codex, instructed to try to prove the checker wrong) audited every command and file difference of the 260 Claude runs without permission, not their final messages (\texttt{analyse/audit-claude-codex/}). It found no file changed in any run, a few commands per run (pytest, reading the test, an attempt to download the missing package), and two runs that ran \texttt{pytest --deselect} on the live test once, as a command, leaving the repository unchanged. A final-state check cannot see such one-off flags; a text search of all packages' commands (\texttt{analyse/transient\_flags.sh}, an upper bound) finds exclusion flags or \texttt{importorskip} in 2/200 Claude, 0/200 GPT, 4/160 GLM and 5/120 DeepSeek baseline runs.
-  \item \textbf{Other packages and versions.} Packages were chosen by availability during the sprint. A result for a package does not carry to the same model in another harness, or to another version. Only H-D, on GLM, is confirmatory.
+  \item \textbf{Other packages and versions.} Packages were chosen by availability during the sprint. A result for a package does not carry to the same model in another harness, or to another version. Confirmatory claims are H-D (GLM), H-F1 and H-F2 (pooled over four package-task strata) and H-R for a Claude lead with GLM workers.
   \item \textbf{Intent, reasoning and evaluation awareness.} The check reads state, not reasoning. We infer no intent, and we did not measure whether agents recognised a test.
   \item \textbf{Final reports.} The planned coding of final messages and the report monitors were not run; nothing here says whether agents disclose or hide a violation.
   \item \textbf{Withdrawn arms.} Transmission of a bypass through four channels, relay chains and the S7 harmful contrast were not executed (Section~\ref{sec:deviations}).
@@ -504,8 +511,48 @@ The sandbox runs Python 3.12 with pytest 8.4. Nothing else in the tree stands
 out.
 \end{Verbatim}
 
+\section{Defense Table and Figure}\label{app:figb}
+\begin{table}[h]
+\centering\small
+\caption{Defense block: refusal note against matched neutral note on the shared board. Impossible task (S6): strict violations (with the rule) or bypasses (without it). Feasible task (S6F): legitimate success. opened: the agent read the note. GLM with the rule: confirmatory test (S6) and pre-registered cost measure (S6F); all else exploratory.}
+\label{tab:def}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lllrrrrll}
+\toprule
+Package, ticket & Task & Note & $n$ & opened & green & raw & strict or bypass (rate) & legit.\ success (rate) \\
+\midrule
+GLM, rule       & S6  & refusal & \improw{v5-def}{glm}{refusal}{violation_strict} \\
+                &     & neutral & \improw{v5-def}{glm}{neutral}{violation_strict} \\
+                & S6F & refusal & \fearow{v5-def}{glm}{refusal}{violation_strict} \\
+                &     & neutral & \fearow{v5-def}{glm}{neutral}{violation_strict} \\
+GLM, no rule    & S6  & refusal & \improw{norule}{glm}{refusal}{bypass} \\
+                &     & neutral & \improw{norule}{glm}{neutral}{bypass} \\
+                & S6F & refusal & \fearow{norule}{glm}{refusal}{bypass} \\
+                &     & neutral & \fearow{norule}{glm}{neutral}{bypass} \\
+\midrule
+Claude, rule    & S6  & refusal & \improw{v5-explo}{claude}{refusal}{violation_strict} \\
+                &     & neutral & \improw{v5-explo}{claude}{neutral}{violation_strict} \\
+                & S6F & refusal & \fearow{v5-explo}{claude}{refusal}{violation_strict} \\
+                &     & neutral & \fearow{v5-explo}{claude}{neutral}{violation_strict} \\
+DeepSeek, rule  & S6  & refusal & \improw{v5-explo}{deepseek}{refusal}{violation_strict} \\
+                &     & neutral & \improw{v5-explo}{deepseek}{neutral}{violation_strict} \\
+                & S6F & refusal & \fearow{v5-explo}{deepseek}{refusal}{violation_strict} \\
+                &     & neutral & \fearow{v5-explo}{deepseek}{neutral}{violation_strict} \\
+GPT, rule       & S6  & refusal & \improw{v5-explo}{gpt}{refusal}{violation_strict} \\
+                &     & neutral & \improw{v5-explo}{gpt}{neutral}{violation_strict} \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[h]
+\centering
+\begin{minipage}{0.8\linewidth}
+\figslot{figB}{Fig.~B: refusal vs neutral note, with and without the rule; impossible and feasible tasks.}
+\end{minipage}
+\caption{Defense, refusal note against matched neutral note. Left: strict violation or bypass on S6. Right: legitimate success on S6F. Wilson 95\,\% intervals, $k/n$ valid runs. GLM with the rule: confirmatory test (S6) and pre-registered cost measure (S6F); everything else is exploratory.}\label{fig:b}
+\end{figure}
+
 \section{Run Flow and Event Audit}\label{app:flow}
-Generated by \texttt{rapport/fill\_registry.py} from the analysis outputs of the registry used for this build (SHA-256 of \texttt{analyse/registre.csv}: \regsha; dated \reg{derived.registry_date}); one row per cell for the flow (\texttt{derive/flow.csv}: planned, launch attempts, set aside, excluded, analysed) and one row per strict event for the audit (\texttt{derive/events\_audit.csv}, which also gives the action, the diff and the ticket clause). Set aside: launches in which the agent never started (Docker, DNS, session limit); excluded: infrastructure failures (Section~\ref{sec:checker}); unfinished: not finished at the freeze. Every event below counts as a strict violation in the pre-specified analysis; the reading column is the mechanical sensitivity classification of \texttt{derive/events\_audit.md}. The only confirmatory event (GLM, neutral note) is a root \texttt{conftest.py} that holds a docstring and no code.
+Generated by \texttt{rapport/fill\_registry.py} from the analysis outputs of the registry used for this build (\texttt{registry.sha256}, the SHA-256 of \texttt{analyse/registre.csv} without its last line: \regsha; dated \reg{derived.registry_date}); one row per cell for the flow (\texttt{derive/flow.csv}: planned, launch attempts, set aside, excluded, analysed) and one row per strict event for the audit (\texttt{derive/events\_audit.csv}, which also gives the action, the diff and the ticket clause). Set aside: launches in which the agent never started (Docker, DNS, session limit); excluded: infrastructure failures (Section~\ref{sec:checker}); unfinished: not finished at the freeze. Every event below counts as a strict violation in the pre-specified analysis; the reading column is the mechanical sensitivity classification of \texttt{derive/events\_audit.md}. The only confirmatory event (GLM, neutral note) is a root \texttt{conftest.py} that holds a docstring and no code.
 
 \paragraph{Run flow.}
 \IfFileExists{flow.tex}{\input{flow.tex}}{\fbox{\parbox{0.95\linewidth}{\centering\small\textcolor{red}{Table pending} (\texttt{derive/flow.csv})}}}

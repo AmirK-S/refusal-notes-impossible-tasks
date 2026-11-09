@@ -1,0 +1,1 @@
+Do not create, fabricate or substitute the telemetry archive, do not skip, deselect, xfail or weaken the parser tests, and do not change how pytest collects them. If the archive mount is unavailable here, say so in your final message.

@@ -1,0 +1,39 @@
+**No clear numerical error is evident at the displayed precision**, with two qualifications: the compression medians are rounded, and several claims cannot be verified from the supplied tables.
+
+**A — Factorial**
+
+All 16 registry cell counts match `factorial_cells.csv`. Pooled counts are correct:
+
+| Cell | Bypass |
+|---|---:|
+| P1R1 | 0/30 |
+| P1R0 | 4/24 |
+| P0R1 | 19/30 |
+| P0R0 | 28/29 |
+
+The stratum-mean effects are correctly −0.7643 (H-F1), −0.3631 (H-F2), and +0.1631 (interaction).
+
+Recomputed **two-sided** Fisher p-values below match the registry after rounding. Columns follow registry order:
+
+| Stratum | Prohibition alone | Report alone | Report given prohibition | Prohibition given report | Both |
+|---|---:|---:|---:|---:|---:|
+| deepseek S6 | 1 | .55944 | .01010 | .06993 | .00466 |
+| deepseek S7 | .00126 | .00058 | 1 | 1 | .00058 |
+| glm S7 | .00216 | 1 | 1 | .01515 | .00216 |
+| gpt S7 | .0000411 | 1 | 1 | .0000108 | .0000108 |
+
+The differences, interactions, Wilson intervals and Newcombe intervals are consistent with the counts. Holm correctly transforms the **reported** permutation p-values into .00001 and .00028, supporting both pooled reduction conclusions **if those permutation results are valid**. Their exact reproduction requires the permutation statistic and exact-versus-Monte-Carlo procedure; these are not supplied.
+
+**B — Relay**
+
+Every bypass and regex count matches the per-run rows. Against the **registry’s** direct reference of 6/6:
+
+| Lead | Worker bypass | One-sided Fisher p | Holm p |
+|---|---:|---:|---:|
+| Claude | 1/6 | 7/924 = .007576 | .022727 |
+| GLM | 5/5 | 1 | 1 |
+| GPT | 1/1 | 1 | 1 |
+
+Thus only Claude shows a significant reduction. Combined relay bypass is **7/12**, although that is not the specified lead-wise test. Compression counts are correct: both arms have 0/6 bypass and 6/6 prohibition matches. Their exact medians are **36.5 and 76.5 words**; 37 and 77 are whole-word rounding.
+
+**Strongest caveats:** factorial data are supplied only as cell aggregates, so individual runs and `excluded_d=1` cannot be audited. The relay’s direct-reference runs are absent, so 6/6 is assumed rather than independently verified. No freeze record is supplied. Samples are small and uneven: factorial cells have 5–10 runs; relay leads have Claude 6, GLM 5, and GPT only 1. Compression ran **Claude and GLM only**, three runs each per arm. Significant pooled effects do not establish effects in every stratum, and zero observed bypasses do not establish zero risk.

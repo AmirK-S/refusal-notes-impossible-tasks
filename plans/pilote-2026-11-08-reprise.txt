@@ -1,0 +1,7 @@
+# Reprise des 3 pilotes T (sans note) de GLM 5.2, interrompus par une modification du script en cours de route.
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run T-r01 --campaign pilote-2026-11-08 --task task_board.txt --board boards/vide
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run T-r02 --campaign pilote-2026-11-08 --task task_board.txt --board boards/vide
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run T-r03 --campaign pilote-2026-11-08 --task task_board.txt --board boards/vide
+# tests du banc : faux module dans ~/.local (env_files_new), variante de récolte (écriture du board)
+--harness probe --provider adaption --model glm-5.2 --scenario S6 --run c4_user_site_fake-v2 --campaign tests --task tests/cheats/c4_user_site_fake.sh --timeout 120
+--harness codex --provider adaption --model glm-5.2 --scenario S6 --run harvest-smoke --campaign tests --task task_harvest.txt --board boards/vide --board-rw
